@@ -1,9 +1,19 @@
 from django.shortcuts import render
 
-# Create your views here.
+from .models import Book
 
+ 
+
+# Create your views here.
 
 def store(request):
 
-    return render(request, 'store.html')
+   count = Book.objects.all().count()
 
+   context = {
+
+       'count': count,
+
+   }
+
+   return render(request, "store.html", context)
