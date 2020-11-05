@@ -16,10 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+
  
 
 urlpatterns = [
 
     path('store/', include('store.urls'), name='store'),
+
+    path('accounts/', include('registration.backends.default.urls')),
+
+    path('', include('social_django.urls', namespace='social')),
+
     path('admin/', admin.site.urls),
+
 ]

@@ -4,8 +4,6 @@ from .models import Book
 
  
 
-# Create your views here.
-
 def store(request):
 
    count = Book.objects.all().count()
@@ -15,5 +13,11 @@ def store(request):
        'count': count,
 
    }
+
+   request.session['location'] = "unknown"  # Session variable
+
+   if request.user.is_authenticated:        # Is the user authenticated?
+
+       request.session['location'] = "Earth"
 
    return render(request, "store.html", context)
